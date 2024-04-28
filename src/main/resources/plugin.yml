@@ -1,0 +1,4 @@
+name: FlameWalk
+version: '${project.version}'
+main: com.gestankbratwurst.flamewalk.FlameWalk
+api-version: '1.20'
