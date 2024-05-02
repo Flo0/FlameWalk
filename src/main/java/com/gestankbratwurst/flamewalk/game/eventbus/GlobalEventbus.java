@@ -8,6 +8,7 @@ import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDropItemEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerEvent;
 
 import java.lang.invoke.MethodHandle;
@@ -23,6 +24,7 @@ public class GlobalEventbus {
     state.registerHandler(BlockPlaceEvent.class, GlobalEventbus::autoCancel);
     state.registerHandler(BlockBreakEvent.class, GlobalEventbus::autoCancel);
     state.registerHandler(EntityDropItemEvent.class, GlobalEventbus::autoCancel);
+    state.registerHandler(PlayerDropItemEvent.class, GlobalEventbus::autoCancel);
     state.registerHandler(BlockExplodeEvent.class, event -> event.blockList().clear());
     state.registerHandler(EntityExplodeEvent.class, event -> event.blockList().clear());
   }

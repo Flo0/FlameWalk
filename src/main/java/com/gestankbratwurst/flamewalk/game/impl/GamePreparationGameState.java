@@ -1,5 +1,6 @@
 package com.gestankbratwurst.flamewalk.game.impl;
 
+import com.gestankbratwurst.flamewalk.FlameWalk;
 import com.gestankbratwurst.flamewalk.api.tasks.TaskManager;
 import com.gestankbratwurst.flamewalk.game.GameManager;
 import com.gestankbratwurst.flamewalk.game.GameState;
@@ -42,8 +43,8 @@ public class GamePreparationGameState extends EventbusState {
   private int ticksAlive = 0;
   private int lastSecond = 0;
 
-  public GamePreparationGameState(GameManager gameManager) {
-    super(gameManager);
+  public GamePreparationGameState(FlameWalk plugin) {
+    super(plugin);
     this.titleAnimation = new SlideInStringAnimation(Arrays.asList(SLIDE_COMPONENTS), 11);
     this.maxTicks = this.titleAnimation.getFrameCount() + 4 * 20;
     this.secondChangeSound = Sound.sound()
@@ -80,7 +81,7 @@ public class GamePreparationGameState extends EventbusState {
 
     Title title = Title.title(topText, bottomText, times);
 
-    this.gameManager.getActivePlayers().stream()
+    this.plugin.getGameManager().getActivePlayers().stream()
         .map(Bukkit::getPlayer)
         .filter(Objects::nonNull)
         .forEach(player -> {
@@ -141,7 +142,7 @@ public class GamePreparationGameState extends EventbusState {
             .build()
     };
 
-    this.gameManager.getActivePlayers().stream()
+    this.plugin.getGameManager().getActivePlayers().stream()
         .map(Bukkit::getPlayer)
         .filter(Objects::nonNull)
         .forEach(player -> Arrays.asList(sounds).forEach(sound -> player.playSound(sound, Sound.Emitter.self())));
@@ -155,8 +156,8 @@ public class GamePreparationGameState extends EventbusState {
         .type(org.bukkit.Sound.ENTITY_ENDER_DRAGON_GROWL)
         .build();
     AtomicInteger counter = new AtomicInteger(1);
-    Location teleportLocation = this.gameManager.getPlugin().getWorldManager().getGameWorld().getSpawnLocation();
-    this.gameManager.getActivePlayers().stream()
+    Location teleportLocation = this.plugin.getGameManager().getPlugin().getWorldManager().getGameWorld().getSpawnLocation();
+    this.plugin.getGameManager().getActivePlayers().stream()
         .map(Bukkit::getPlayer)
         .filter(Objects::nonNull)
         .forEach(player -> {
@@ -167,7 +168,7 @@ public class GamePreparationGameState extends EventbusState {
 
   @Override
   public GameState getNextState() {
-    return new MainGameState(this.gameManager);
+    return new MainGameState(this.plugin);
   }
 
   @Override

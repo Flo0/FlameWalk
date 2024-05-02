@@ -26,7 +26,7 @@ public class GameManager {
     this.plugin = plugin;
     Bukkit.getPluginManager().registerEvents(new GameListener(this), plugin);
     TaskManager.runTaskTimer(this::tickCurrentState, 1, 1);
-    this.currentState = new LobbyGameState(this);
+    this.currentState = new LobbyGameState(this.plugin);
   }
 
   public List<UUID> getActivePlayers() {
@@ -51,7 +51,7 @@ public class GameManager {
     } else {
       this.currentState.onCancel();
     }
-    this.currentState = new GamePreparationGameState(this);
+    this.currentState = new GamePreparationGameState(this.plugin);
     this.currentState.onStart();
   }
 

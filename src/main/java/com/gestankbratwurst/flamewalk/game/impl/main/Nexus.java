@@ -109,4 +109,7 @@ public class Nexus {
     return this.health <= 0;
   }
 
+  public Location getCenter() {
+    return this.itemDisplay.getWorld().getHighestBlockAt(this.itemDisplay.getLocation()).getLocation();
+  }
 }

@@ -1,6 +1,6 @@
 package com.gestankbratwurst.flamewalk.game.eventbus;
 
-import com.gestankbratwurst.flamewalk.game.GameManager;
+import com.gestankbratwurst.flamewalk.FlameWalk;
 import com.gestankbratwurst.flamewalk.game.GameState;
 import org.bukkit.event.Event;
 
@@ -11,10 +11,10 @@ import java.util.function.Consumer;
 public abstract class EventbusState implements GameState {
 
   private final Map<Class<? extends Event>, Consumer<? extends Event>> eventHandlers;
-  protected final GameManager gameManager;
+  protected final FlameWalk plugin;
 
-  protected EventbusState(GameManager gameManager) {
-    this.gameManager = gameManager;
+  protected EventbusState(FlameWalk plugin) {
+    this.plugin = plugin;
     this.eventHandlers = new HashMap<>();
     GlobalEventbus.defaults(this);
     registerHandlers();

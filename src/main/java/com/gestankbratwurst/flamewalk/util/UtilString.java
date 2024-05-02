@@ -7,10 +7,18 @@ public class UtilString {
   }
 
   public static String progressBar(double progress, int length, String filledPrefix, String emptyPrefix, String element) {
+    return progressBar(progress, length, filledPrefix, emptyPrefix, element, false);
+  }
+
+  public static String progressBar(double progress, int length, String filledPrefix, String emptyPrefix, String element, boolean reversed) {
     progress = Math.max(0, Math.min(1, progress));
     int filled = (int) (progress * length);
     int empty = length - filled;
-    return filledPrefix + element.repeat(filled) + emptyPrefix + element.repeat(empty);
+    if (reversed) {
+      return emptyPrefix + element.repeat(empty) + filledPrefix + element.repeat(filled);
+    } else {
+      return filledPrefix + element.repeat(filled) + emptyPrefix + element.repeat(empty);
+    }
   }
 
 }

@@ -1,13 +1,14 @@
 package com.gestankbratwurst.flamewalk.game.impl;
 
+import com.gestankbratwurst.flamewalk.FlameWalk;
 import com.gestankbratwurst.flamewalk.game.GameManager;
 import com.gestankbratwurst.flamewalk.game.GameState;
 import com.gestankbratwurst.flamewalk.game.eventbus.EventbusState;
 
 public class CleanupGameState extends EventbusState {
 
-  public CleanupGameState(GameManager gameManager) {
-    super(gameManager);
+  public CleanupGameState(FlameWalk plugin) {
+    super(plugin);
   }
 
   @Override
@@ -32,7 +33,7 @@ public class CleanupGameState extends EventbusState {
 
   @Override
   public GameState getNextState() {
-    return new LobbyGameState(this.gameManager);
+    return new LobbyGameState(this.plugin);
   }
 
   @Override

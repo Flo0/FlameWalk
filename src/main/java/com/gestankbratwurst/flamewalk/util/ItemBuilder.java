@@ -88,7 +88,7 @@ public class ItemBuilder {
   }
 
   public ItemBuilder name(Component component) {
-    Component nonItalic = Component.text().style(Style.style().decoration(TextDecoration.ITALIC, false).build()).append(component).build();
+    Component nonItalic = component.style(Style.style().decoration(TextDecoration.ITALIC, false).build());
     this.itemMeta.displayName(nonItalic);
     return this;
   }
@@ -109,19 +109,19 @@ public class ItemBuilder {
   }
 
   public ItemBuilder name(final String name) {
-    this.itemMeta.displayName(Component.text(name));
+    this.itemMeta.displayName(Component.text(name).style(Style.style().decoration(TextDecoration.ITALIC, false).build()));
     return this;
   }
 
   public ItemBuilder lore(final String line) {
-    Component nonItalic = Component.text().style(Style.style().decoration(TextDecoration.ITALIC, false).build()).append(Component.text(line)).build();
+    Component nonItalic = Component.text(line).style(Style.style().decoration(TextDecoration.ITALIC, false).build());
     this.loreLines.add(nonItalic);
     return this;
   }
 
   public ItemBuilder lore(final Component line) {
-    Component nonItalic = Component.text().style(Style.style().decoration(TextDecoration.ITALIC, false).build()).append(line).build();
-    this.loreLines.add(line);
+    Component nonItalic = line.style(Style.style().decoration(TextDecoration.ITALIC, false).build());
+    this.loreLines.add(nonItalic);
     return this;
   }
 
